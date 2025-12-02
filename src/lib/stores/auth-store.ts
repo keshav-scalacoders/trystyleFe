@@ -1,5 +1,4 @@
 import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
 
 interface AuthStore {
   token: string | null;
@@ -14,7 +13,7 @@ interface AuthStore {
  * Custom zustand store for auth that persists token+user to either localStorage or sessionStorage
  * depending on the remember flag passed to login.
  */
-export const useAuthStore = create<AuthStore>((set, get) => ({
+export const useAuthStore = create<AuthStore>((set) => ({
   token: null,
   user: null,
   isLoggedIn: false,

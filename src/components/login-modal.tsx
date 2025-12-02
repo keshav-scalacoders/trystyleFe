@@ -19,10 +19,10 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { useToast } from '@/hooks/use-toast';
 import AuthAPI from '@/api/auth.api';
 import { useAuthStore } from '@/lib/stores/auth-store';
 import { loginRequestSchema, type LoginRequest } from '@/shared/schema';
+import { toast } from 'sonner';
 
 interface LoginModalProps {
   open: boolean;
@@ -31,7 +31,6 @@ interface LoginModalProps {
 }
 
 export function LoginModal({ open, onOpenChange, onLoginSuccess }: LoginModalProps) {
-  const { toast } = useToast();
   const { login } = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -49,18 +48,12 @@ export function LoginModal({ open, onOpenChange, onLoginSuccess }: LoginModalPro
       // call backend via AuthAPI, persist token to chosen storage and update zustand store
       const { token, user } = await AuthAPI.login(data, true);
       login(token, user, true);
-      toast({
-        title: 'Login successful!',
-        description: 'You can now try on clothes',
-      });
+      toast.success('You can now try on clothes',
+      );
       onOpenChange(false);
       onLoginSuccess();
     } catch (error: any) {
-      toast({
-        title: 'Login failed',
-        description: error.message || 'Please check your credentials',
-        variant: 'destructive',
-      });
+      toast.error(error.message || 'Please check your credentials');
     } finally {
       setIsLoading(false);
     }
