@@ -1,5 +1,3 @@
-import apiClient from './client';
-
 export async function uploadModel(file: File, metadata?: Record<string, string | number>): Promise<{ url: string } | any> {
   const form = new FormData();
   form.append('image', file);

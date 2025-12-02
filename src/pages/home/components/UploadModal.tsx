@@ -14,7 +14,7 @@ export default function UploadModal({
   onSelect: (file: File | string) => void
 }) {
   const fileRef = useRef<HTMLInputElement | null>(null)
-  const { selected, originalImage, processedImage, setProcessed, setOriginal } = useTryOn()
+  const { selected, originalImage, processedImage, setProcessed } = useTryOn()
   const { setModelImage, setClothingImage } = useAppStore()
   const [isProcessing, setIsProcessing] = useState(false)
 

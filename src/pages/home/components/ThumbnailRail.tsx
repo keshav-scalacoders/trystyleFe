@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function ThumbnailRail({ items, activeId, onPick }: { items: any[]; activeId?: string | number; onPick: (id: any) => void }) {
   return (
     <div className="w-full overflow-x-auto py-3 px-2 sm:px-0">

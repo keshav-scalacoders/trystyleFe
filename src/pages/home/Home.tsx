@@ -11,7 +11,7 @@ const FooterNote = () => (
 
 function AppContent() {
   const [showUpload, setShowUpload] = useState(false)
-  const { garments, selectGarment, selected, setOriginal, setProcessed, originalImage, processedImage } = useTryOn()
+  const { garments, selectGarment, selected, setOriginal, setProcessed } = useTryOn()
   const { setModelImage, setClothingImage } = useAppStore()
 
   const openTryOn = (g: any) => {
