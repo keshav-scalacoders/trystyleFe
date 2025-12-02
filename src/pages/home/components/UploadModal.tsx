@@ -6,12 +6,7 @@ import { saveAs } from 'file-saver'
 import { Button } from '@/components/ui/button'
 import { useAuthStore } from '@/lib/stores/auth-store'
 import { LoginModal } from '@/components/login-modal'
-import { ShareButton, type ShareButtonProps,} from '@/components/animate-ui/components/community/share-button'
-
-type ShareButtonDemoProps = {
-  size?: ShareButtonProps['size'];
-  icon?: ShareButtonProps['icon'];
-};
+import { ShareButton } from '@/components/animate-ui/components/community/share-button'
 
 export default function UploadModal({
   open,
@@ -94,7 +89,8 @@ export default function UploadModal({
     }
   }
 
-  async function handleShare() {
+  async function handleShare(platform: 'github' | 'x' | 'facebook') {
+    console.log(`Share to ${platform} clicked`)
     if (!processedImage) return
     if (navigator?.share) {
       try {
@@ -177,7 +173,7 @@ export default function UploadModal({
 
               <div className="mt-4 flex items-center justify-center gap-3">
                 <Button variant={"default"} onClick={handleDownload} className="">Download</Button>
-                <ShareButton size={"md"} icon={"prefix"}>
+                <ShareButton size={"md"} icon={"prefix"} onIconClick={handleShare}>
                   Share
                 </ShareButton>
                 <button onClick={clearProcessed} className="px-4 py-2 bg-transparent border rounded-full">Back</button>
