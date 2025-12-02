@@ -13,7 +13,7 @@ export default function GarmentCard({
 }) {
   return (
     <div className="rounded-2xl overflow-hidden bg-white shadow-sm hover:shadow-lg transition-transform transform hover:scale-105">
-      <div className="relative aspect-3/4 w-full overflow-hidden group transition-all">
+      <div className="relative aspect-3/4 w-full overflow-hidden group transition-all" onClick={onTry}>
         <img src={img} alt={name} className="object-cover w-full h-full" />
           <div className="absolute inset-0 opacity-0 hover:opacity-90 transition-opacity bg-black/30 flex items-end justify-center p-4">
             <button aria-label={`Try ${name} on`} onClick={onTry} className="cursor-pointer -translate-x-1/2 group-hover:translate-x-0 bg-secondary px-6 min-h-10 hover: rounded-xl text-primary font-medium shadow-md hover:scale-110 transform transition duration-200 hover:bg-primary-600 flex items-center gap-2">Try On <MoveUpRight size={12} /></button>

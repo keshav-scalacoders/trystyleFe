@@ -5,6 +5,7 @@ import Logo from './Logo';
 import { LoginModal } from './login-modal';
 import AuthAPI from '@/api/auth.api';
 import { useAuthStore } from '@/lib/stores/auth-store';
+import { MyAccDropdown } from '@/pages/home/components/MyAccDropdown';
 
 // interface User {
 //     id: string;
@@ -175,24 +176,17 @@ const Navbar: React.FC = () => {
 
     const navClasses = `
         w-full flex items-center justify-between z-50 transition-all duration-300
-        sticky top-0 
-        ${isScrolled ? 'py-3 shadow-lg bg-gray-400 backdrop-blur-sm border-b border-gray-100' : 'py-5 bg-gray-300'}
-        px-4 sm:px-8 lg:px-20 border-b border-gray-200 
+        sticky top-0
+        ${isScrolled ? 'py-3 shadow-lg bg-background/80 backdrop-blur-sm border-b border-border' : 'py-5 bg-transparent'}
+        px-4 sm:px-8 lg:px-20
     `;
 
     // Content for both desktop and mobile menu
     const AuthContent: JSX.Element = (
         isLoggedIn ? (
-            <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-5">
-                <p className="justify-start lg:justify-center ">
-                    {user?.name || 'Account'}
-                </p>
-                <Button variant="outline" onClick={handleLogout} className="w-full lg:w-auto">
-                    Log out
-                </Button>
-            </div>
+                <MyAccDropdown logout={handleLogout} user={user?.name} />
         ) : (
-            <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-2 text-gray-400">
+            <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-2 text-muted-foreground">
                 <Button variant="ghost" className="justify-start lg:justify-center text-primary" onClick={() => { setShowLoginModal(true); setIsMenuOpen(false); }}>
                     Log In
                 </Button>
@@ -212,14 +206,14 @@ const Navbar: React.FC = () => {
                 {/* Desktop Actions */}
                 <div className="hidden lg:flex items-center gap-4">
                     {AuthContent}
-                    <a href="/theme" className="text-sm text-neutral-600 hover:underline ml-4">Theme</a>
+                    {/* <a href="/theme" className="text-sm text-muted-foreground hover:underline ml-4">Theme</a> */}
                 </div>
 
                 {/* Mobile Menu Button */}
                 <div className="lg:hidden">
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors"
+                        className="p-2 rounded-lg text-foreground hover:bg-accent/8 transition-colors"
                     >
                         {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>

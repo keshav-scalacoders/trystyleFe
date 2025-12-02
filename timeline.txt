@@ -1,0 +1,9 @@
+2 december
+- worked on styling of application on HERO section
+- completed flow of application to final step
+- added theme changing universal component
+
+
+todo
+- add authentication before try on
+- 

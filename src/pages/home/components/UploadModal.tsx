@@ -3,6 +3,15 @@ import { Camera } from 'lucide-react'
 import { useTryOn } from '@/context/TryOnContext'
 import { useAppStore } from '@/lib/stores/app-store'
 import { saveAs } from 'file-saver'
+import { Button } from '@/components/ui/button'
+import { useAuthStore } from '@/lib/stores/auth-store'
+import { LoginModal } from '@/components/login-modal'
+import { ShareButton, type ShareButtonProps,} from '@/components/animate-ui/components/community/share-button'
+
+type ShareButtonDemoProps = {
+  size?: ShareButtonProps['size'];
+  icon?: ShareButtonProps['icon'];
+};
 
 export default function UploadModal({
   open,
@@ -17,6 +26,8 @@ export default function UploadModal({
   const { selected, originalImage, processedImage, setProcessed } = useTryOn()
   const { setModelImage, setClothingImage } = useAppStore()
   const [isProcessing, setIsProcessing] = useState(false)
+  const { isLoggedIn } = useAuthStore();
+  const [showLoginModal, setShowLoginModal] = useState<boolean>(false);
 
   if (!open) return null
 
@@ -34,6 +45,11 @@ export default function UploadModal({
 
   async function handleTryOn() {
     if (!selected) return
+
+    if (!isLoggedIn) {
+      setShowLoginModal(true);
+      return;
+    }
 
     try {
       setIsProcessing(true)
@@ -105,7 +121,7 @@ export default function UploadModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-6">
       <div className="w-full max-w-3xl bg-white rounded-2xl p-6 relative">
-        <button onClick={onClose} className="absolute top-4 left-4 text-primary-600 font-semibold">← Back</button>
+        <button onClick={onClose} className="absolute top-4 left-4 text-primary-600 font-semibold"> Back</button>
 
         <div className="flex flex-col items-center justify-center py-8">
           {/* If there's no uploaded photo yet show the large dropzone */}
@@ -160,8 +176,10 @@ export default function UploadModal({
               </div>
 
               <div className="mt-4 flex items-center justify-center gap-3">
-                <button onClick={handleDownload} className="px-4 py-2 bg-primary-600 text-white rounded-full shadow">Download</button>
-                <button onClick={handleShare} className="px-4 py-2 bg-white/90 border border-neutral-200 rounded-full text-slate-700">Share</button>
+                <Button variant={"default"} onClick={handleDownload} className="">Download</Button>
+                <ShareButton size={"md"} icon={"prefix"}>
+                  Share
+                </ShareButton>
                 <button onClick={clearProcessed} className="px-4 py-2 bg-transparent border rounded-full">Back</button>
               </div>
             </div>
@@ -169,6 +187,11 @@ export default function UploadModal({
 
         </div>
       </div>
+      <LoginModal
+        open={showLoginModal}
+        onOpenChange={setShowLoginModal}
+        onLoginSuccess={() => { }}
+      />
     </div>
   )
 }

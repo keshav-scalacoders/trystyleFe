@@ -37,11 +37,15 @@ function applyThemeToDocument(state: Partial<Pick<ThemeState, 'primary' | 'secon
     document.documentElement.style.setProperty('--primary', state.primary)
     const fg = calcContrastForeground(state.primary)
     document.documentElement.style.setProperty('--primary-foreground', fg)
+    // use primary as an accent for focus rings by default
+    document.documentElement.style.setProperty('--ring', state.primary)
   }
   if (state.secondary) {
     document.documentElement.style.setProperty('--secondary', state.secondary)
     const fg = calcContrastForeground(state.secondary)
     document.documentElement.style.setProperty('--secondary-foreground', fg)
+    // secondary can be used for subtle backgrounds / overlays
+    document.documentElement.style.setProperty('--sidebar-accent', state.secondary)
   }
   if (state.fontFamily) document.documentElement.style.setProperty('--font-family', state.fontFamily)
   if (typeof state.fontSizePx === 'number') document.documentElement.style.setProperty('--global-font-size', `${state.fontSizePx}px`)

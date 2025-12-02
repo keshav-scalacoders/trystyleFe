@@ -16,7 +16,7 @@ export default function ThemePage() {
     <div className="container mx-auto px-6 py-12 max-w-4xl">
       <h1 className="text-3xl font-bold mb-4">Theme settings</h1>
 
-      <p className="mb-6 text-sm text-neutral-500">Change the app primary/secondary colors, font family and base font size. Changes apply immediately and are saved to localStorage.</p>
+      <p className="mb-6 text-sm text-muted-foreground">Change the app primary/secondary colors, font family and base font size. Changes apply immediately and are saved to localStorage.</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-4">
@@ -55,7 +55,7 @@ export default function ThemePage() {
           <div className="p-4 rounded-md" style={{ background: 'var(--background)' }}>
             <div style={{ fontFamily: 'var(--font-family)', fontSize: 'var(--global-font-size)' }}>
               <h3 className="text-2xl font-bold mb-2" style={{ color: 'var(--primary)' }}>Heading — Primary color</h3>
-              <p className="mb-4 text-neutral-600">This is a paragraph demonstrating the font and base font size. Use the slider to change the size.</p>
+              <p className="mb-4 text-muted-foreground">This is a paragraph demonstrating the font and base font size. Use the slider to change the size.</p>
               <div className="flex gap-2">
                 <button className="px-4 py-2 rounded text-white" style={{ background: 'var(--primary)' }}>Primary</button>
                 <button className="px-4 py-2 rounded" style={{ background: 'var(--secondary)', color: 'var(--secondary-foreground, black)' }}>Secondary</button>

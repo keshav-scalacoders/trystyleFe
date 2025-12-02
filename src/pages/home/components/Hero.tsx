@@ -20,16 +20,16 @@ export default function Hero() {
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Text side */}
           <div className="flex flex-col items-center text-center lg:items-start lg:text-left">
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-neutral-100 px-4 py-2 text-sm font-medium text-neutral-700 animate-fade-in -delay-0">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-secondary px-4 py-2 text-sm font-medium text-secondary-foreground animate-fade-in -delay-0">
               <Sparkles className="h-4 w-4" />
               New: Instant AI Try-On
             </div>
 
-            <h1 className="font-extrabold tracking-tight text-5xl sm:text-6xl lg:text-7xl bg-linear-to-r from-neutral-900 to-neutral-700 bg-clip-text text-transparent animate-fade-up -delay-100">
+            <h1 className="bg-linear-to-r from-primary to-secondary font-extrabold tracking-tight text-3xl sm:text-5xl lg:text-7xl bg-clip-text text-transparent animate-fade-up -delay-100">
               Try Before<br className="hidden sm:inline" /> You Buy
             </h1>
 
-            <p className="mt-6 text-lg sm:text-xl text-neutral-600 max-w-2xl leading-relaxed animate-fade-up -delay-200">
+            <p className="mt-6 text-lg sm:text-xl max-w-2xl leading-relaxed animate-fade-up -delay-200">
               Instant AI try-on. No app needed.<br />
               See how clothes look on you in seconds - right in your browser.
             </p>
@@ -46,19 +46,19 @@ export default function Hero() {
               </Button>
             </div>
 
-            <p className="mt-8 text-sm text-neutral-500 animate-fade-up -delay-400">
+            <p className="mt-8 text-sm text-muted-foreground animate-fade-up -delay-400">
               Used by 50,000+ shoppers • 4.9/5 from 2.3k reviews
             </p>
           </div>
 
           {/* Image side */}
-          <div className="flex justify-center lg:justify-end animate-fade-in -delay-300">
+          <div className="hidden lg:flex justify-center lg:justify-end animate-fade-in -delay-300">
             <div className="relative">
-              <div className="absolute inset-0 -z-10 translate-x-4 translate-y-4 rounded-3xl bg-neutral-200/50 blur-3xl" />
+              <div className="absolute inset-0 -z-10 translate-x-4 translate-y-4 rounded-3xl bg-secondary/40 blur-3xl" />
               <img
                 src="/images/hero.png"
                 alt="AI try-on preview"
-                className="relative z-10 rounded-2xl shadow-2xl ring-1 ring-neutral-200/50 max-w-lg lg:max-w-none"
+                className="relative z-10 rounded-2xl shadow-2xl ring-1 ring-border/50 max-w-sm lg:max-w-lg xl:max-w-none"
               />
             </div>
           </div>
@@ -68,7 +68,7 @@ export default function Hero() {
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce-slow">
         <div className="flex flex-col items-center gap-2">
           <div className="h-8 w-5 rounded-full border-2 border-neutral-400/60" />
-          <ChevronDown className="h-6 w-6 text-neutral-500" />
+          <ChevronDown className="h-6 w-6 text-muted-foreground" />
         </div>
       </div>
     </section>
