@@ -212,6 +212,7 @@ const Navbar: React.FC = () => {
                 {/* Desktop Actions */}
                 <div className="hidden lg:flex items-center gap-4">
                     {AuthContent}
+                    <a href="/theme" className="text-sm text-neutral-600 hover:underline ml-4">Theme</a>
                 </div>
 
                 {/* Mobile Menu Button */}

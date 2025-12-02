@@ -10,6 +10,8 @@ import { PageTransition } from "@/components/page-transition";
 import HomePage from "@/pages/home/Home";
 
 import NotFound from "@/pages/not-found";
+import ThemePage from '@/pages/theme/Theme';
+import { useThemeStore } from '@/lib/stores/theme-store';
 import Navbar from "./components/navbar";
 import Home from "./pages/home/Home";
 
@@ -34,6 +36,14 @@ function Router() {
             </PageTransition>
           )}
         </Route>
+        <Route path="/theme">
+          {() => (
+            <PageTransition>
+              <ThemePage />
+            </PageTransition>
+          )}
+        </Route>
+
         <Route>
           {() => (
             <PageTransition>
@@ -51,6 +61,7 @@ function App() {
   // initialize auth store from storage on app mount
   useEffect(() => {
     try { useAuthStore.getState().init(); } catch (e) { }
+    try { useThemeStore.getState().init(); } catch (e) { }
   }, []);
 
   return (
