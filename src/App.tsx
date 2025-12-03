@@ -1,38 +1,30 @@
 import { Switch, Route, useLocation } from "wouter";
 import { queryClient } from "./lib/queryClient";
 import { QueryClientProvider } from "@tanstack/react-query";
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useAuthStore } from '@/lib/stores/auth-store';
 import { Toaster } from '@/components/ui/sonner'
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { AnimatePresence } from "framer-motion";
 import { PageTransition } from "@/components/page-transition";
-import HomePage from "@/pages/home/Home";
-
-import NotFound from "@/pages/not-found";
-import ThemePage from '@/pages/theme/Theme';
 import { useThemeStore } from '@/lib/stores/theme-store';
-import Navbar from "./components/navbar";
 import Home from "./pages/home/Home";
+
+const Navbar = React.lazy(() => import("./components/navbar"));
+const NotFound = React.lazy(() => import("@/pages/not-found"));
+const ThemePage = React.lazy(() => import('@/pages/theme/Theme'));
 
 function Router() {
   const [location] = useLocation();
 
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence>
       <Navbar />
       <Switch location={location} key={location}>
         <Route path="/">
           {() => (
             <PageTransition>
               <Home />
-            </PageTransition>
-          )}
-        </Route>
-        <Route path="/first">
-          {() => (
-            <PageTransition>
-              <HomePage />
             </PageTransition>
           )}
         </Route>

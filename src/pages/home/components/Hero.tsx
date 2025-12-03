@@ -56,7 +56,7 @@ export default function Hero() {
             <div className="relative">
               <div className="absolute inset-0 -z-10 translate-x-4 translate-y-4 rounded-3xl bg-secondary/40 blur-3xl" />
               <img
-                src="/images/hero.png"
+                src="/images/hero.webp"
                 alt="AI try-on preview"
                 className="relative z-10 rounded-2xl shadow-2xl ring-1 ring-border/50 max-w-sm lg:max-w-lg xl:max-w-none"
               />

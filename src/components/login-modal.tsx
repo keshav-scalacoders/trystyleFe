@@ -9,6 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -30,7 +31,7 @@ interface LoginModalProps {
   onLoginSuccess: () => void;
 }
 
-export function LoginModal({ open, onOpenChange, onLoginSuccess }: LoginModalProps) {
+export default function LoginModal({ open, onOpenChange, onLoginSuccess }: LoginModalProps) {
   const { login } = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
 

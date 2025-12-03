@@ -11,9 +11,9 @@ export const GARMENTS = [
     id: 'g2',
     name: 'Sleek Leather Jacket',
     price: '$349',
-    image: '/images/office.jpg',
-    tryOn: '/images/office.jpg',
-    thumb: '/images/office.jpg'
+    image: '/images/office.webp',
+    tryOn: '/images/office.webp',
+    thumb: '/images/office.webp'
   },
   {
     id: 'g3',
@@ -59,9 +59,9 @@ export const GARMENTS = [
     id: 'g8',
     name: 'Relaxed Denim Jacket',
     price: '$89',
-    image: '/images/office.jpg',
-    tryOn: '/images/office.jpg',
-    thumb: '/images/office.jpg'
+    image: '/images/office.webp',
+    tryOn: '/images/office.webp',
+    thumb: '/images/office.webp'
   },
   {
     id: 'g9',

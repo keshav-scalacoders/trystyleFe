@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useCallback, type JSX } from 'react';
+import React, { useState, useEffect, useCallback, type JSX, Suspense } from 'react';
 import { X, Menu } from 'lucide-react';
 import { Button } from './ui/button';
 import Logo from './Logo';
-import { LoginModal } from './login-modal';
+const LoginModal = React.lazy(() => import('@/components/login-modal'));
 import AuthAPI from '@/api/auth.api';
 import { useAuthStore } from '@/lib/stores/auth-store';
 import { MyAccDropdown } from '@/pages/home/components/MyAccDropdown';
@@ -153,6 +153,7 @@ const Navbar: React.FC = () => {
     const { isLoggedIn, logout, user } = useAuthStore();
 
     // Sticky state implementation
+
     const [isScrolled, setIsScrolled] = useState<boolean>(false);
 
     const handleScroll = useCallback(() => {
@@ -184,7 +185,7 @@ const Navbar: React.FC = () => {
     // Content for both desktop and mobile menu
     const AuthContent: JSX.Element = (
         isLoggedIn ? (
-                <MyAccDropdown logout={handleLogout} user={user?.name} />
+            <MyAccDropdown logout={handleLogout} user={user?.name} />
         ) : (
             <div className="flex flex-col lg:flex-row items-stretch lg:items-center gap-2 text-muted-foreground">
                 <Button variant="ghost" className="justify-start lg:justify-center text-primary" onClick={() => { setShowLoginModal(true); setIsMenuOpen(false); }}>
@@ -232,12 +233,14 @@ const Navbar: React.FC = () => {
                     </div>
                 </div>
             )}
+            <Suspense fallback={null}>
 
-            <LoginModal
-                open={showLoginModal}
-                onOpenChange={setShowLoginModal}
-                onLoginSuccess={() => { }}
-            />
+                <LoginModal
+                    open={showLoginModal}
+                    onOpenChange={setShowLoginModal}
+                    onLoginSuccess={() => { }}
+                />
+            </Suspense>
 
         </>
     )

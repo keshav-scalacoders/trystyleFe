@@ -1,12 +1,12 @@
-import React, { useRef, useState } from 'react'
+import React, { Suspense, useRef, useState } from 'react'
 import { Camera } from 'lucide-react'
 import { useTryOn } from '@/context/TryOnContext'
 import { useAppStore } from '@/lib/stores/app-store'
 import { saveAs } from 'file-saver'
 import { Button } from '@/components/ui/button'
 import { useAuthStore } from '@/lib/stores/auth-store'
-import { LoginModal } from '@/components/login-modal'
-import { ShareButton } from '@/components/animate-ui/components/community/share-button'
+const LoginModal = React.lazy(() => import('@/components/login-modal'));
+const ShareButton = React.lazy(() => import('@/components/animate-ui/components/community/share-button').then(mod => ({ default: mod.ShareButton })));
 
 export default function UploadModal({
   open,
@@ -183,11 +183,13 @@ export default function UploadModal({
 
         </div>
       </div>
-      <LoginModal
-        open={showLoginModal}
-        onOpenChange={setShowLoginModal}
-        onLoginSuccess={() => { }}
-      />
+      <Suspense fallback={null}>
+        <LoginModal
+          open={showLoginModal}
+          onOpenChange={setShowLoginModal}
+          onLoginSuccess={() => { }}
+        />
+      </Suspense>
     </div>
   )
 }
